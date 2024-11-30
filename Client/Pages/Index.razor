@@ -1,0 +1,118 @@
+﻿@page "/"
+
+@using Crud_Ligaut.Shared;
+@inject HttpClient client;
+@inject NavigationManager navigationManager;
+@inject IJSRuntime js
+
+<h3>Lista de Jugadores</h3>
+
+<button class="btn btn-primary mt-4" @onclick="OnClickAdd">
+    Nuevo Jugador <i class="oi oi-plus m-1"></i>
+</button>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Jugador</th>
+            <th>Nombre Completo</th>
+            <th>Número</th>
+            <th>Equipo</th>
+            <th>Alias</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ligas == null && isLoading)
+        {
+            <tr>
+                <td colspan="8" align="center">Cargando...</td>
+            </tr>
+        }
+        else if (ligas == null && !isLoading)
+        {
+            <tr>
+                <td colspan="8" align="center">No se encontraron datos</td>
+            </tr>
+        }
+        else if (ligas != null && ligas.Count == 0)
+        {
+            <tr>
+                <td colspan="8" align="center">No se encontraron datos</td>
+            </tr>
+        }
+        else if (ligas != null && ligas.Count > 0)
+        {
+            foreach (var liga in ligas)
+            {
+                <tr>
+                    <td width="10%">@liga.Id</td>
+                    <td width="25%">@liga.Jugador</td>
+                    <td width="25%">@liga.NombreCompleto</td>
+                    <td width="10%">@liga.Numero</td>
+                    <td width="10%">@liga.Equipo</td>
+                    <td width="10%">@liga.Alias</td>
+                    <td width="10%">@(liga.Estado == 1 ? "Activo" : "Inactivo")</td>
+
+                    <td width="20%">
+                        <a href="@($"/ligas/edit/{liga.Id}")" class="btn btn-primary">
+                            Editar <i class="oi oi-pencil m-1"></i>
+                        </a>
+
+                        <button @onclick="@(() => Delete(liga))" class="btn btn-danger">
+                            Eliminar <i class="oi oi-trash m-1"></i>
+                        </button>
+                    </td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Liga>? ligas;
+    private bool isLoading = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetAllLigas();
+    }
+
+    private async Task GetAllLigas()
+    {
+        try
+        {
+            isLoading = true;
+            ligas = await client.GetFromJsonAsync<List<Liga>>("api/ligas/getligas");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void OnClickAdd()
+    {
+        navigationManager.NavigateTo("/ligas/add");
+    }
+
+    private async void Delete(Liga liga)
+    {
+        bool confirm = await js.InvokeAsync<bool>("confirm", $"¿Estás seguro de eliminar al jugador {liga.Jugador}?");
+
+        if (confirm)
+        {
+            var result = await client.DeleteAsync($"api/ligas/deleteligas/{liga.Id}");
+
+            await GetAllLigas();
+            StateHasChanged();
+        }
+    }
+}

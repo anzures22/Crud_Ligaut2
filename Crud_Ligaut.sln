@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35514.174 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crud_Ligaut.Server", "Server\Crud_Ligaut.Server.csproj", "{E838C455-5037-44C1-8C29-D13A9B208797}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crud_Ligaut.Client", "Client\Crud_Ligaut.Client.csproj", "{3CE7A1C6-1D2D-46D8-85BD-AD10C99B30E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crud_Ligaut.Shared", "Shared\Crud_Ligaut.Shared.csproj", "{E8A2D7A6-0255-4795-AFC5-309695396819}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E838C455-5037-44C1-8C29-D13A9B208797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E838C455-5037-44C1-8C29-D13A9B208797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E838C455-5037-44C1-8C29-D13A9B208797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E838C455-5037-44C1-8C29-D13A9B208797}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE7A1C6-1D2D-46D8-85BD-AD10C99B30E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE7A1C6-1D2D-46D8-85BD-AD10C99B30E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE7A1C6-1D2D-46D8-85BD-AD10C99B30E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE7A1C6-1D2D-46D8-85BD-AD10C99B30E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8A2D7A6-0255-4795-AFC5-309695396819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A2D7A6-0255-4795-AFC5-309695396819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A2D7A6-0255-4795-AFC5-309695396819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A2D7A6-0255-4795-AFC5-309695396819}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
